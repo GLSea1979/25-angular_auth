@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - 'stable'
+dist: trusty
 sudo: required
 addons:
   apt:
@@ -8,6 +9,9 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
-before_script: npm i
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
 script:
   - npm run test
